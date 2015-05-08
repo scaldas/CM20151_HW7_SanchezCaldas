@@ -1,0 +1,7 @@
+El archivo read.R se obtiene el tiempo transcurrido en minutos tal y como se aconseja en el enunciado.
+Este código produce el archivo "intervals.csv".
+
+El archivo pixels.txt contiene los pixeles que se explorarán con los fits:
+	Los primeros 50 se escogieron tales que parecieran interesantes para los modelos buscados
+	Los siguientes 50 se escogieron "caprichosamente" para ver como reaccionaba el codigo ante diferentes inputs
+
