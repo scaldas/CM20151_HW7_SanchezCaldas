@@ -41,7 +41,9 @@ def step_model(x, f, g, h, n, t0):
 	model = [f + g*t + h*(1 + (2.0/np.pi)*np.arctan(n*(t-t0))) for t in x]
 	return model
 
-print(len(raw_lineal))
+best_file = open('bestmodels.txt', 'w')
+best_file.write("x y modelo parametros\n")
+
 for i in range(0, len(raw_lineal)):
 	likelihoods = []
 
@@ -71,6 +73,7 @@ for i in range(0, len(raw_lineal)):
 		plt.legend([real, fit], ['Observado','Fit'], loc=4)
 		plt.savefig('./graficas/Pixel' + str(info_lineal[0]) + '-' + str(info_lineal[1]) + '.png')
 		plt.clf()
+		best_file.write(info_lineal[0] + " " + info_lineal[1] + " " + "Lineal" + " " + str(info_lineal[3]) + " " + str(info_lineal[4]) +  "\n")
 	else:
 		if max_likelihood == likelihood_gaussiana:
 			B_fit = lineal_model(time, float(info_gaussiana[3]), float(info_gaussiana[4]))
@@ -84,6 +87,7 @@ for i in range(0, len(raw_lineal)):
 			plt.legend([real, fit], ['Observado','Fit'], loc=4)
 			plt.savefig('./graficas/Pixel' + str(info_gaussiana[0]) + '-' + str(info_gaussiana[1]) + '.png', bbox_inches='tight')
 			plt.clf()	
+			best_file.write(info_gaussiana[0] + " " + info_gaussiana[1] + " " + "Gaussiana" + " " + info_gaussiana[3] + " " + info_gaussiana[4] + " " + info_gaussiana[5] + " " + info_gaussiana[6] + " " + info_gaussiana[7] + "\n")
 		else:
 			pixel_data = fits_data[:,info_paso[0],info_paso[1]]
 			B_fit = step_model(time, float(info_paso[3]), float(info_paso[4]), float(info_paso[5]), float(info_paso[6]), float(info_paso[7]))
@@ -94,4 +98,5 @@ for i in range(0, len(raw_lineal)):
 			plt.xlabel('t (min)')
 			plt.legend([real, fit], ['Observado','Fit'], loc=4)
 			plt.savefig('./graficas/Pixel' + str(info_paso[0]) + '-' + str(info_paso[1]) + '.png', bbox_inches='tight')
+			best_file.write(info_paso[0] + " " + info_paso[1] + " " + "Paso" + " " + info_paso[3] + " " + info_paso[4] + " " + info_paso[5] + " " + info_paso[6] + " " + info_paso[7] + "\n")
 			plt.clf()
