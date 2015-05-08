@@ -33,9 +33,9 @@ with open(file_name, 'a') as myfile:
 
 #Modelo Gaussiano
 def my_model(x, c, d, sigma, miu, kappa):
-    helper = np.sqrt(2*np.pi)
-    model = [c + d*t + (kappa/(sigma*helper))*np.exp((-1.0/2.0)*((t-miu)/sigma)**2) for t in x]
-    return model
+	helper = np.sqrt(2*np.pi)
+	model = [c + d*t + (kappa/(sigma*helper))*np.exp((-1.0/2.0)*((t-miu)/sigma)**2) for t in x]
+	return model
 
 def likelihood(y_obs, y_model):
 	chi_squared = (1.0/2.0)*sum((y_obs-y_model)**2)
